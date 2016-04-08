@@ -139,12 +139,14 @@ function dodajSmeske(vhodnoBesedilo) {
 }
 
 function dodajVideoYT(vhodnoBesedilo) {
-  if(vhodnoBesedilo.indexOf("https://www.youtube.com/watch?v=") != -1) {
-    var tabB = vhodnoBesedilo.split("https://www.youtube.com/watch?v=");
-    // idxVideo == koda videa na yt...
-    var idxVideo = tabB[tabB.length - 1];
-    vhodnoBesedilo = "<iframe src=https://www.youtube.com/embed/"+idxVideo+" allowfullscreen></iframe>";
-    
+  var tabBesedila = vhodnoBesedilo.split(" ");
+  for(var i = 0; i < tabBesedila.length; i++) {
+    if(tabBesedila[i].indexOf("https://www.youtube.com/watch?v=") != -1) {
+      var tabB = tabBesedila[i].split("https://www.youtube.com/watch?v=");
+      // idxVideo == koda videa na yt...
+      var idxVideo = tabB[tabB.length - 1];
+    vhodnoBesedilo += "<div><iframe src=https://www.youtube.com/embed/"+idxVideo+" allowfullscreen></iframe></div>";
+    }
   }
-    return vhodnoBesedilo;
+  return vhodnoBesedilo;
 }
