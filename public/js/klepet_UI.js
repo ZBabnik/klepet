@@ -1,11 +1,11 @@
 function divElementEnostavniTekst(sporocilo) {
   var jeSmesko = sporocilo.indexOf('http://sandbox.lavbic.net/teaching/OIS/gradivo/') > -1;
+  var jeSlika = sporocilo.indexOf('<img') > -1;
   if (jeSmesko) {
     sporocilo = sporocilo.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace('&lt;img', '<img').replace('png\' /&gt;', 'png\' />');
     return $('<div style="font-weight: bold"></div>').html(sporocilo);
   }
   else if (jeSlika) {
-    sporocilo = sporocilo.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace('&lt;img', '<img').replace('png\' /&gt;', 'png\' />');
     return $('<div style="font-weight: bold"></div>').html(sporocilo);
   } else {
     return $('<div style="font-weight: bold;"></div>').text(sporocilo);
@@ -19,7 +19,6 @@ function divElementHtmlTekst(sporocilo) {
 function procesirajVnosUporabnika(klepetApp, socket) {
   var sporocilo = $('#poslji-sporocilo').val();
   sporocilo = dodajSmeske(sporocilo);
-  sporocilo = dodajSlike(sporocilo);
   var sistemskoSporocilo;
 
   if (sporocilo.charAt(0) == '/') {
@@ -29,6 +28,7 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     }
   } else {
     sporocilo = filtirirajVulgarneBesede(sporocilo);
+    sporocilo = dodajSlike(sporocilo);
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
     $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
@@ -138,10 +138,15 @@ function dodajSmeske(vhodnoBesedilo) {
 }
 
 function dodajSlike(vhodnoBesedilo) {
-  var tabBesed = vhodnoBesedilo.split(" ");
-  for(var i = 0; i < tabBesed; i++){
-    if( tabBesed[i].startsWith("https://" || "http://") && tabBesed[i].endsWith(".png" || ".jpeg" || ".jpg" || ".gif")){
-      $("#sporocila").append("<div><img src="+ tabBesed[i] +" alt="DodanaSlika" height="42" width="200"></div>"); 
-    }
+  var tabBesedilo = vhodnoBesedilo.split(" ");
+  for(var i = 0; i < tabBesedilo.length; i++) {
+    console.log(tabBesedilo[i].indexOf('https://'));
+    if(tabBesedilo[i].indexOf('http://') == 0 || tabBesedilo[i].indexOf('https://') == 0) {
+      if(tabBesedilo[i].indexOf('.jpg' || '.gif' || '.png') == (tabBesedilo[i].length - 4)) {
+        vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+" width=200></div>";
+      }
+    } 
   }
+  return vhodnoBesedilo;
 }
+
