@@ -100,6 +100,10 @@ $(document).ready(function() {
       $('#seznam-uporabnikov').append(divElementEnostavniTekst(uporabniki[i]));
     }
   });
+  
+  socket.on('dregljaj', function(nick) {
+    
+  });
 
   setInterval(function() {
     socket.emit('kanali');
