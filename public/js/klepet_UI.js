@@ -118,8 +118,6 @@ $(document).ready(function() {
     procesirajVnosUporabnika(klepetApp, socket);
     return false;
   });
-  
-  
 });
 
 function dodajSmeske(vhodnoBesedilo) {
@@ -145,7 +143,7 @@ function dodajVideoYT(vhodnoBesedilo) {
       var tabB = tabBesedila[i].split("https://www.youtube.com/watch?v=");
       // idxVideo == koda videa na yt...
       var idxVideo = tabB[tabB.length - 1];
-    vhodnoBesedilo += "<div><iframe src=https://www.youtube.com/embed/"+idxVideo+" allowfullscreen></iframe></div>";
+      vhodnoBesedilo += "<div><iframe src=https://www.youtube.com/embed/"+idxVideo+" allowfullscreen></iframe></div>";
     }
   }
   return vhodnoBesedilo;
