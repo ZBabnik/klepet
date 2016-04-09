@@ -117,8 +117,6 @@ $(document).ready(function() {
     procesirajVnosUporabnika(klepetApp, socket);
     return false;
   });
-  
-  
 });
 
 function dodajSmeske(vhodnoBesedilo) {
@@ -142,7 +140,9 @@ function dodajSlike(vhodnoBesedilo) {
   for(var i = 0; i < tabBesedilo.length; i++) {
     console.log(tabBesedilo[i].indexOf('https://'));
     if(tabBesedilo[i].indexOf('http://') == 0 || tabBesedilo[i].indexOf('https://') == 0) {
-      if(tabBesedilo[i].indexOf('.jpg' || '.gif' || '.png') == (tabBesedilo[i].length - 4)) {
+      if(tabBesedilo[i].indexOf('.jpg')||
+         tabBesedilo[i].indexOf('.gif')||
+         tabBesedilo[i].indexOf('.png')  == (tabBesedilo[i].length - 4)) {
         vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+"></div>";
       }
     } 
