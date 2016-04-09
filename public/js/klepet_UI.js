@@ -143,7 +143,7 @@ function dodajSlike(vhodnoBesedilo) {
     console.log(tabBesedilo[i].indexOf('https://'));
     if(tabBesedilo[i].indexOf('http://') == 0 || tabBesedilo[i].indexOf('https://') == 0) {
       if(tabBesedilo[i].indexOf('.jpg' || '.gif' || '.png') == (tabBesedilo[i].length - 4)) {
-        vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+" width=200></div>";
+        vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+"></div>";
       }
     } 
   }
