@@ -120,8 +120,6 @@ $(document).ready(function() {
     procesirajVnosUporabnika(klepetApp, socket);
     return false;
   });
-  
-  
 });
 
 function dodajSmeske(vhodnoBesedilo) {
