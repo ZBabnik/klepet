@@ -138,15 +138,17 @@ function dodajSmeske(vhodnoBesedilo) {
 function dodajSlike(vhodnoBesedilo) {
   var tabBesedilo = vhodnoBesedilo.split(" ");
   for(var i = 0; i < tabBesedilo.length; i++) {
-    console.log(tabBesedilo[i].indexOf('https://'));
     if(tabBesedilo[i].indexOf('http://') == 0 || tabBesedilo[i].indexOf('https://') == 0) {
-      if(tabBesedilo[i].indexOf('.jpg')||
-         tabBesedilo[i].indexOf('.gif')||
-         tabBesedilo[i].indexOf('.png')  == (tabBesedilo[i].length - 4)) {
+      if(tabBesedilo[i].indexOf('.jpg') == (tabBesedilo[i].length - 4)) {
+        vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+"></div>";
+      }
+      if(tabBesedilo[i].indexOf('.png') == (tabBesedilo[i].length - 4)) {
+        vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+"></div>";
+      }
+      if(tabBesedilo[i].indexOf('.gif') == (tabBesedilo[i].length - 4)) {
         vhodnoBesedilo += "<div><img src="+tabBesedilo[i]+"></div>";
       }
     } 
   }
   return vhodnoBesedilo;
 }
-
