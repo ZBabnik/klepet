@@ -148,6 +148,14 @@ $(document).ready(function() {
         $('#vsebina').dequeue();
       });
   });
+  
+  socket.on('dregljaj', function(result) {
+      $('#vsebina').jrumble().trigger('startRumble');
+      $('#vsebina').delay(1500).queue(function(){
+        $('#vsebina').jrumble().trigger('stopRumble');
+        $('#vsebina').dequeue();
+      });
+  });
 
   setInterval(function() {
     socket.emit('kanali');
